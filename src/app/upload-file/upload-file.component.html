@@ -1,0 +1,54 @@
+<input
+  type="file"
+  #choose
+  class="file-input"
+  multiple
+  (change)="onChange($event)"
+/>
+
+@if (files.length) {
+  <div class="file-section">
+    @for (preview of previews; track $index) {
+      <div>
+        @if (preview.content.startsWith('data:image')) {
+          <div>
+            <img [src]="preview.content" alt="Aperçu du fichier" />
+          </div>
+        }
+        @if (preview.content && preview.content.startsWith('data:text/plain')) {
+          <div>
+            <pre>{{ preview.content }}</pre>
+          </div>
+        }
+        @if (preview.content && preview.content.startsWith('data:application/pdf')) {
+          <div>
+            <embed
+              [src]="preview.content"
+              type="application/pdf"
+              width="100%"
+              height="500px"
+            />
+          </div>
+        }
+        @if (preview.content && preview.content.startsWith('blob:')) {
+          <div>
+            <video controls>
+              <source [src]="preview.content" type="video/mp4" />
+              Your browser does not support the video tag.
+            </video>
+          </div>
+        }
+        @if (preview.content.startsWith('Aperçu non disponible')) {
+          <div>
+            <p>{{ preview.content }}</p>
+          </div>
+        }
+      </div>
+
+      <button (click)="onDelete(preview.file)">Supprimer</button>
+    }
+
+    <button (click)="choose.click()">Ajouter</button>
+    <button (click)="onUpload()" class="upload-button">Télécharger les fichiers</button>
+  </div>
+}
