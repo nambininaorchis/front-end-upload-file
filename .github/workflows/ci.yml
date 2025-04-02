@@ -33,4 +33,4 @@ jobs:
             -H "Authorization: Bearer ${{ secrets.PRACTITEST_API_KEY }}" \
             -F "file=@./test-results/test-results.xml" \
             -F "project_id=${{ secrets.PRACTITEST_PROJECT_ID }}" \
-            "https://api.practitest.com/api/v2/test_runs.json"
+            "https://prod.practitest.com/p/30790/tests/16766384/"
