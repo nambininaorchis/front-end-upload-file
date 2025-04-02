@@ -70,7 +70,7 @@ export class UploadFileComponent {
       }
 
       try {
-        const response = await this.http.post("http://localhost:3001/file-upload/upload", formData).toPromise();
+        await this.http.post("http://localhost:3001/file-upload/upload", formData).toPromise();
         alert('Upload réussi')
       } catch (error) {
         console.error('Erreur d\'upload', error);
@@ -82,16 +82,19 @@ export class UploadFileComponent {
 
   compressImageWithNg2ImgMax(file: File, maxSize: number): Promise<File> {
     return new Promise((resolve, reject) => { 
-      this.ng2ImgMax.compressImage(file, maxSize).subscribe(
-        (compressedImage) => {
+      this.ng2ImgMax.compressImage(file, maxSize).subscribe({
+        next: (compressedImage) => {
           const compressedFile = new File([compressedImage], file.name, { type: file.type });
+          console.log(compressedFile);
           resolve(compressedFile);
         },
-        (error) => {
+        error: (error) => {
+          console.log(error);
           reject('Erreur de compression : ' + error);
         }
-      );
+      });
     });
   }
+  
 
 }

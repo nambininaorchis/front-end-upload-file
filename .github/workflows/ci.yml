@@ -1,0 +1,36 @@
+name: Playwright Tests with Angular and PractiTest
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  playwright-tests:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Install dependencies
+        run: |
+          npm install
+          npx playwright install
+
+      - name: Start Angular Application
+        run: |
+          npm run start &
+          npx wait-on http://localhost:4200
+
+      - name: Run Playwright tests and generate report
+        run: |
+          npx playwright test --reporter=junit --output=./test-results
+
+      - name: Upload JUnit results to PractiTest
+        run: |
+          curl -X POST \
+            -H "Authorization: Bearer ${{ secrets.PRACTITEST_API_KEY }}" \
+            -F "file=@./test-results/test-results.xml" \
+            -F "project_id=${{ secrets.PRACTITEST_PROJECT_ID }}" \
+            "https://api.practitest.com/api/v2/test_runs.json"
