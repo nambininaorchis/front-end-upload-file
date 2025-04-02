@@ -6,7 +6,7 @@ test.beforeEach(async ({ page }) => {
 
 test('Test 1: Ajouter un fichier, afficher les aperçus et télécharger les fichiers', async ({ page }) => {
   const chooseButton = page.locator('input[type="file"]');
-  await chooseButton.setInputFiles('/home/nambinina/Téléchargements/right.svg');
+  await chooseButton.setInputFiles('./file/right.svg');
   const imagePreview = page.locator('img[alt="Aperçu du fichier"]');
   await expect(imagePreview).toBeVisible();
   const uploadButton = page.locator('.upload-button');
@@ -18,7 +18,7 @@ test('Test 1: Ajouter un fichier, afficher les aperçus et télécharger les fic
 
 test('Test 2: Ajouter un fichier, afficher les aperçus et supprimer l\'élément', async ({ page }) => {
   const chooseButton = page.locator('input[type="file"]');
-  await chooseButton.setInputFiles('/home/nambinina/Téléchargements/right.svg');
+  await chooseButton.setInputFiles('./file/right.svg');
   const imagePreview = page.locator('img[alt="Aperçu du fichier"]');
   await expect(imagePreview).toBeVisible();
   const deleteButton = page.locator('button', { hasText: 'Supprimer' });
