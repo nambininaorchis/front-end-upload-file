@@ -30,7 +30,7 @@ jobs:
       - name: Upload JUnit results to PractiTest
         run: |
           curl -X POST \
-            -H "Authorization: Bearer ${{ secrets.PRACTITEST_API_KEY }}" \
-            -F "file=@./test-results/test-results.xml" \
-            -F "project_id=${{ secrets.PRACTITEST_PROJECT_ID }}" \
-            "https://prod.practitest.com/api/v2/projects//30790/tests/16766384/"
+          -H "Authorization: Bearer ${{ secrets.PRACTITEST_API_KEY }}" \
+          -F "file=@./test-results/test-results.xml" \
+          -F "project_id=${{ secrets.PRACTITEST_PROJECT_ID }}" \
+          "https://prod.practitest.com/api/v2/projects/${{ secrets.PRACTITEST_PROJECT_ID }}/tests/16766384/results"
