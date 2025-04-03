@@ -21,7 +21,7 @@ jobs:
       - name: Install dependencies
         run: |
           npm install
-          npx playwright install
+          npm init playwright
 
       - name: Start Angular Application
         run: |
