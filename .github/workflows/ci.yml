@@ -20,17 +20,17 @@ jobs:
 
       - name: Install dependencies
         run: |
-          npm install
-          npx playwright install
+          npm install 
+          npx playwright install 
+          npm install -g @angular/cli 
 
       - name: Start Angular Application
         run: |
-          ng serve & 
-          
+          ng serve &
 
       - name: Run Playwright tests and generate report
         run: |
-          npx playwright test --reporter=junit --output=./test-results
+          npx playwright test --reporter=junit --output=./test-results  # Exécute les tests Playwright et génère un rapport
 
       - name: Send results to SquashTest
         run: |
