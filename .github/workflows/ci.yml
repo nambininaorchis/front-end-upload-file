@@ -34,6 +34,6 @@ jobs:
 
       - name: Send results to SquashTest
         run: |
-          curl -X POST https://saas-orchis01.henix.com/squash/ \
+          curl -X POST https://saas-orchis01.henix.com/api/testresult \
           -H "Authorization: Bearer ${{ secrets.SQUASH_API_KEY }}" \
           -d '{"status": "PASSED", "testName": "Playwright Test"}'
