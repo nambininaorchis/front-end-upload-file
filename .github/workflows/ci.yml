@@ -25,8 +25,8 @@ jobs:
 
       - name: Start Angular Application
         run: |
-          npm run start & 
-          npx wait-on http://localhost:4200
+          ng serve & 
+          
 
       - name: Run Playwright tests and generate report
         run: |
