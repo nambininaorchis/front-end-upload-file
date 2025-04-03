@@ -26,11 +26,11 @@ jobs:
 
       - name: Start Angular Application
         run: |
-          ng serve &
+          npm start &
 
       - name: Run Playwright tests and generate report
         run: |
-          npx playwright test --reporter=junit --output=./test-results  # Exécute les tests Playwright et génère un rapport
+          npx playwright test --reporter=junit --output=./test-results
 
       - name: Send results to SquashTest
         run: |
