@@ -33,4 +33,5 @@ jobs:
           curl -X POST \
             -H "Authorization: Bearer ${{ secrets.PRACTITEST_API_KEY }}" \
             -F "file=@./test-results/test-results.xml" \
-            -F "project_id=${{ secrets.PRACTITEST_PROJECT_ID }}"_
+            -F "project_id=${{ secrets.PRACTITEST_PROJECT_ID }}" \
+            https://api.practitest.com/api/v2/projects/${{ secrets.PRACTITEST_PROJECT_ID }}/tests.json
